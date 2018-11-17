@@ -2,6 +2,8 @@ package ucb.bo.edu.actividad11;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
 public class SessionManager {
 
     //Shared Preferences
@@ -22,13 +24,19 @@ public class SessionManager {
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
+    //	Gson gson = new Gson();
+    //	String userJson =gson.toJson(value);
 
-    public void saveUser(String username) {
-        editor.putString(KEY_USER, username);
+
+    public void saveUser(Usuario username) {
+        Gson gson = new Gson();
+        String userJson = gson.toJson(username);
+        editor.putString(KEY_USER, userJson);
         editor.commit();
     }
-    public String getUserName() {
-        return pref.getString(KEY_USER, null);
+    public Usuario getUserName() {
+        Gson gson=new Gson();
+       return gson.fromJson(pref.getString(KEY_USER,null),Usuario.class);
     }
 
 

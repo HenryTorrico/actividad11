@@ -21,7 +21,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         this.txtSelectd=(TextView) findViewById(R.id.txtSelected);
         sessionManager = new SessionManager(getApplicationContext());
-        this.txtSelectd.setText(sessionManager.getUserName());
+        this.txtSelectd.setText(sessionManager.getUserName().toString());
 
     }
 
